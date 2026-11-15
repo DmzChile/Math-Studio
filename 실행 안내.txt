@@ -1,0 +1,12 @@
+﻿# Math Studio 로컬 실행
+
+이 폴더에서 index.html을 더블클릭하면 브라우저에서 열립니다.
+설치나 인터넷 연결 없이 사용할 수 있습니다. 실행할 때는 이 폴더의 파일을 함께 보관하세요.
+
+- index.html — 화면 구조
+- styles.css, app.js — 화면 스타일과 동작
+- examples.js, handouts.js, handout-answers.js — 예시, 교안 문제, 영문 해설과 난이도
+- hero.jpg, favicon.svg, SpaceGrotesk.ttf — 이미지, 로고, 글꼴
+
+기본 문제와 해설은 파일에 들어 있습니다.
+직접 등록한 문제와 문제집은 추가한 브라우저에 저장됩니다. 배포 사이트에서 브라우저에 따로 저장한 항목은 이 복사본으로 옮겨지지 않습니다.

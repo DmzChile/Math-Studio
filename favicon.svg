@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="integral" x1="35" y1="103" x2="85" y2="18" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8a4ff0"/>
+      <stop offset=".54" stop-color="#4a7eeb"/>
+      <stop offset="1" stop-color="#2edcd2"/>
+    </linearGradient>
+  </defs>
+  <path d="M35 100 C39 117 53 117 57 88 L64 32 C68 2 82 1 85 19" fill="none" stroke="url(#integral)" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="35" cy="100" r="7" fill="#8a4ff0"/>
+  <circle cx="85" cy="19" r="7" fill="#2edcd2"/>
+</svg>

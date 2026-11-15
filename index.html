@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#151515">
+  <meta name="description" content="A problem bank for engineering mathematics and linear algebra, with original problems and linked practice variants.">
+  <title>Math Studio · Problem Bank</title>
+  <link rel="icon" href="math-studio-alpha.png" type="image/png">
+  <link rel="stylesheet" href="katex/katex.min.css">
+  <link rel="stylesheet" href="styles.css?v=math-scroll">
+  <script defer src="katex/katex.min.js"></script>
+  <script defer src="math.js?v=math-scroll"></script>
+  <script defer src="examples.js?v=latex"></script>
+  <script defer src="handout-answers.js"></script>
+  <script defer src="handouts.js?v=latex"></script>
+  <script defer src="app.js?v=set-edit"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to main content</a>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-row">
+        <a href="#home" class="brand">
+          <img class="brand-mark" src="math-studio-alpha.png" width="36" height="36" alt="">
+          <span class="brand-wordmark"><strong>Math</strong> <span>Studio</span></span>
+        </a>
+        <button type="button" class="icon-button sidebar-close" data-action="close-nav" aria-label="Close menu"><span data-icon="close"></span></button>
+      </div>
+      <nav class="navigation" aria-label="Main navigation">
+        <a href="#home" data-page="home" class="nav-link"><span data-icon="home"></span>Home</a>
+        <div class="nav-group">
+          <p class="nav-label">Courses</p>
+          <a href="#engineering" data-page="engineering" class="nav-link"><span data-icon="gear"></span>Engineering Mathematics</a>
+          <a href="#linear" data-page="linear" class="nav-link"><span data-icon="lambda"></span>Linear Algebra</a>
+        </div>
+        <div class="nav-group">
+          <p class="nav-label">Resources</p>
+          <a href="#library" data-page="library" class="nav-link"><span data-icon="library"></span>Problem Bank</a>
+          <a href="#sets" data-page="sets" class="nav-link"><span data-icon="folder"></span>Problem Sets</a>
+        </div>
+      </nav>
+      <div class="workspace"><span class="workspace-icon" data-icon="folder"></span><span><strong>Public Space</strong><small>Saved in this browser</small></span></div>
+    </aside>
+    <button class="scrim" type="button" data-action="close-nav" aria-label="Close menu" hidden></button>
+
+    <div class="main-shell">
+      <header class="topbar">
+        <div class="breadcrumbs">
+          <button type="button" class="icon-button menu-toggle" data-action="open-nav" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false"><span data-icon="menu"></span></button>
+          <span class="crumb-root">Workspace</span><span class="crumb-divider">/</span><span id="breadcrumb">Home</span>
+        </div>
+        <div class="top-actions">
+          <button type="button" class="button search-button" data-action="search" aria-label="Search problems"><span data-icon="search"></span><span class="search-label">Search</span><kbd id="shortcut">Ctrl K</kbd></button>
+          <button type="button" class="button primary" id="add-problem" data-action="create"><span data-icon="plus"></span>Add Problem</button>
+          <button type="button" class="button primary" id="add-set" data-action="create-set" hidden><span data-icon="plus"></span>Add Set</button>
+        </div>
+      </header>
+      <main id="content" tabindex="-1">
+        <div class="page-heading"><h1 id="page-title">Home</h1><p id="page-description">Practice engineering mathematics and linear algebra in one place.</p></div>
+        <section class="hero" id="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <h2 id="hero-title">Math Problem Bank</h2>
+            <p>Browse problems from course notes and practice with linked variants.</p>
+            <a class="button primary" href="#library">Browse Problems <span data-icon="arrow"></span></a>
+          </div>
+        </section>
+        <section class="overview" id="overview" aria-label="Problem bank overview">
+          <a class="metric" href="#engineering">
+            <span class="metric-label"><span class="metric-icon violet" data-icon="gear"></span>Engineering Mathematics <span class="metric-arrow" data-icon="arrow-up"></span></span>
+            <span class="metric-number" id="engineering-count"></span>
+            <span class="metric-note">Differential equations · Laplace transforms</span>
+          </a>
+          <a class="metric" href="#linear">
+            <span class="metric-label"><span class="metric-icon cyan" data-icon="lambda"></span>Linear Algebra <span class="metric-arrow" data-icon="arrow-up"></span></span>
+            <span class="metric-number" id="linear-count"></span>
+            <span class="metric-note">Matrices · Eigenvalues and eigenvectors</span>
+          </a>
+          <a class="metric" href="#library/variants">
+            <span class="metric-label"><span class="metric-icon green" data-icon="variant"></span>Practice Variants <span class="metric-arrow" data-icon="arrow-up"></span></span>
+            <span class="metric-number" id="variant-count"></span>
+            <span class="metric-note">Practice linked to original problems</span>
+          </a>
+        </section>
+
+        <section class="problem-section" id="sets-section" aria-labelledby="sets-heading" hidden>
+          <div class="list-heading" id="sets-heading-row">
+            <div><h2 id="sets-heading">Problem Sets</h2></div>
+            <a href="#sets" class="all-link" id="all-sets-link">View all sets <span data-icon="arrow"></span></a>
+          </div>
+          <ul id="set-list" class="set-list"></ul>
+        </section>
+
+        <section class="problem-section" id="problem-section" aria-label="Problem List">
+          <div class="list-heading"><div><h2>Problem List</h2><p id="list-description">Explore the sample problems or add one from your course notes.</p></div>
+            <a href="#sets" class="all-link" id="back-to-sets" hidden>All problem sets <span data-icon="arrow"></span></a>
+            <a href="#library" class="all-link" id="all-link">View all <span data-icon="arrow"></span></a>
+          </div>
+          <div class="problem-panel">
+            <div class="filters">
+              <div class="types" id="type-filter" role="group" aria-label="Problem type">
+                <button type="button" data-kind="all" aria-pressed="true">All</button>
+                <button type="button" data-kind="original" aria-pressed="false">Original</button>
+                <button type="button" data-kind="variant" aria-pressed="false">Variant</button>
+              </div>
+              <div class="filter-fields">
+                <select id="unit-filter" aria-label="Topic"><option value="">All topics</option></select>
+                <label class="search-field"><span data-icon="search"></span><input type="search" id="problem-search" placeholder="Search titles or topics" aria-label="Search by title or topic" autocomplete="off"></label>
+              </div>
+            </div>
+            <div class="table-head" aria-hidden="true"><span>Problem</span><span>Course · Topic</span><span>Type</span><span>Difficulty</span><span></span></div>
+            <ul id="problems" class="problem-list"></ul>
+            <div id="empty" class="empty" hidden><span data-icon="library"></span><strong id="empty-title"></strong><p id="empty-text"></p><button class="button secondary" type="button" id="empty-action"></button></div>
+            <div class="list-footer"><span id="result-count" role="status"></span></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <dialog id="detail" aria-labelledby="detail-title">
+    <div class="dialog-header"><span>Problem Details</span><button type="button" class="icon-button" data-action="close-dialog" aria-label="Close problem details"><span data-icon="close"></span></button></div>
+    <div class="dialog-body" id="detail-body"></div>
+    <div class="dialog-footer" id="detail-actions"></div>
+  </dialog>
+
+  <dialog id="editor" aria-labelledby="editor-title">
+    <div class="dialog-header"><h2 id="editor-title">Add Problem</h2><button type="button" class="icon-button" data-action="close-dialog" aria-label="Close problem editor"><span data-icon="close"></span></button></div>
+    <form id="problem-form">
+      <div class="dialog-body form-fields">
+        <p class="form-note" id="problem-editor-note">Changes are saved in this browser.</p>
+        <div class="field-pair">
+          <label>Course <select name="course"><option value="engineering">Engineering Mathematics</option><option value="linear">Linear Algebra</option></select></label>
+          <label>Type <select name="kind"><option value="original">Original</option><option value="variant">Variant</option></select></label>
+        </div>
+        <label id="parent-field" hidden>Original problem to link <select name="parentId" disabled></select><small id="parent-hint"></small></label>
+        <div class="field-pair">
+          <label>Topic <input name="unit" required maxlength="60" placeholder="e.g., Laplace Transforms" list="known-units" autocomplete="off"></label>
+          <datalist id="known-units"></datalist>
+          <label>Difficulty <select name="level"><option value="" hidden>Unrated</option><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></label>
+        </div>
+        <label>Title <input name="title" required maxlength="100" placeholder="Enter a short title" autocomplete="off"></label>
+        <label>Problem statement <textarea name="statement" data-math-editor required maxlength="12000" rows="4" placeholder="Describe what is given and what to find."></textarea></label>
+        <label>Course notes reference <small>Optional</small> <input name="source" maxlength="140" placeholder="e.g., Week 3 notes, p. 12, Exercise 4" autocomplete="off"></label>
+        <label>Answer and solution <small>Optional</small> <textarea name="solution" data-math-editor maxlength="12000" rows="3" placeholder="Enter the answer or show how to solve it."></textarea></label>
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+      </div>
+      <div class="dialog-footer"><button type="button" class="button secondary" data-action="close-dialog">Cancel</button><button type="submit" class="button primary" id="save-problem">Add Problem</button></div>
+    </form>
+  </dialog>
+  <dialog id="set-editor" aria-labelledby="set-editor-title">
+    <div class="dialog-header"><h2 id="set-editor-title">Add Problem Set</h2><button type="button" class="icon-button" data-action="close-dialog" aria-label="Close set editor"><span data-icon="close"></span></button></div>
+    <form id="set-form">
+      <div class="dialog-body form-fields">
+        <p class="form-note">Sets you add are saved in this browser.</p>
+        <label>Set title <input name="title" required maxlength="100" placeholder="e.g., Week 4 Practice" autocomplete="off"></label>
+        <label>Course <select name="course"><option value="engineering">Engineering Mathematics</option><option value="linear">Linear Algebra</option></select></label>
+        <label>Source reference <small>Optional</small> <input name="reference" maxlength="90" placeholder="e.g., Week 4 lecture notes" autocomplete="off"></label>
+        <div class="set-entry-heading"><h3>Problems</h3><button class="button secondary" type="button" data-action="add-set-entry"><span data-icon="plus"></span>Add another</button></div>
+        <div id="set-entries" class="set-entries"></div>
+        <p class="form-error" id="set-form-error" role="alert" hidden></p>
+      </div>
+      <div class="dialog-footer"><button type="button" class="button secondary" data-action="close-dialog">Cancel</button><button type="submit" class="button primary">Save Set</button></div>
+    </form>
+  </dialog>
+  <template id="set-entry-template">
+    <fieldset class="set-entry">
+      <legend></legend>
+      <label>Problem title <input name="problemTitle" maxlength="100" placeholder="e.g., General Solution" required></label>
+      <label>Problem statement <textarea name="problemStatement" data-math-editor maxlength="12000" rows="3" required></textarea></label>
+      <label>Page or problem number <small>Optional</small> <input name="problemReference" maxlength="45" placeholder="e.g., p. 6, Problem 3"></label>
+      <button type="button" class="button secondary remove-set-entry" data-action="remove-set-entry">Remove</button>
+    </fieldset>
+  </template>
+  <template id="math-editor-template">
+    <div class="math-tools">
+      <div class="math-toolbar">
+        <button type="button" data-math-insert="inline">Inline math</button>
+        <button type="button" data-math-insert="equation">Display equation</button>
+        <label><span class="visually-hidden">Insert a LaTeX template</span>
+          <select data-math-template>
+            <option value="">Math templates</option>
+            <option value="fraction">Fraction</option>
+            <option value="power">Exponent</option>
+            <option value="root">Square root</option>
+            <option value="matrix">Matrix</option>
+            <option value="integral">Definite integral</option>
+          </select>
+        </label>
+      </div>
+      <p class="math-help">Type normal text and use \( … \) for inline math or \[ … \] for a display equation.</p>
+      <div class="math-preview" hidden>
+        <p class="math-help">Preview</p>
+        <div class="math-preview-content"></div>
+        <p class="math-error" role="status" hidden></p>
+      </div>
+    </div>
+  </template>
+  <div id="toast" class="toast" role="status"></div>
+</body>
+</html>
